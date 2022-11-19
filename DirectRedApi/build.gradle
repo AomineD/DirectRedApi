@@ -6,6 +6,9 @@ plugins {
     id 'com.google.dagger.hilt.android'
 }
 
+sourceCompatibility = 11 // java 8
+targetCompatibility = 11
+
 task androidSourcesJar(type: Jar) {
     classifier 'sources'
     from android.sourceSets.main.java.srcDirs
