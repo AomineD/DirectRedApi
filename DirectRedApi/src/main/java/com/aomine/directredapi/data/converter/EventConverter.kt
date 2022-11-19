@@ -4,9 +4,11 @@ import android.os.Build
 import com.aomine.directredapi.data.model.SportEvent
 import com.aomine.directredapi.data.model.SportListResponse
 import com.aomine.directredapi.data.model.api.EventsResponse
+import com.aomine.directredapi.data.model.api.MapParams
 import com.aomine.directredapi.helper.RedCoroutinesHelper.apmap
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import java.net.URLEncoder
 
 object EventConverter {
 
@@ -74,5 +76,13 @@ object EventConverter {
             }
         }
         return SportListResponse(statusCode, errorMessage, newList)
+    }
+
+    fun List<MapParams>.formatPostToWebView():String{
+        var postData = ""
+        forEach {
+            postData += "${it.key}=${URLEncoder.encode(it.value, "UTF-8")}&"
+        }
+        return postData
     }
 }

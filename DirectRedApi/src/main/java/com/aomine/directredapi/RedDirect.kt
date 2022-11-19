@@ -15,6 +15,14 @@ import javax.inject.Inject
 class RedDirect @Inject constructor(private val redService: RedService) {
 
 
+    init {
+        loadPlayersFromApi {
+           players = it.players
+        }
+    }
+
+    var players:List<Player>? = null
+
     companion object{
         var baseUrl:String = "https://www.tarjetarojatvonline.sx"
         lateinit var instance:RedDirect
